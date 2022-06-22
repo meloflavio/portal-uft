@@ -44,5 +44,10 @@ class TestPortalSettings(unittest.TestCase):
         """Test portal mail address."""
         value = api.portal.get_registry_record("plone.email_from_address")
         expected = "naoresponder@dti.uft.edu.br"
-        addressValue = api.portal.get_registry_record("plone.email_from_address")
+        self.assertEquals(expected, value)
+
+    def test_portal_twitter(self):
+        """Test portal twitter."""
+        value = api.portal.get_registry_record("plone.twitter_username")
+        expected = "uft_oficial"
         self.assertEquals(expected, value)
