@@ -83,7 +83,7 @@ format:  ## Format codebase
 	$(MAKE) -C "./frontend/" format
 
 .PHONY: lint
-format:  ## Lint codebase
+lint:  ## Lint codebase
 	@echo "Lint codebase"
 	$(MAKE) -C "./backend/" lint
 
