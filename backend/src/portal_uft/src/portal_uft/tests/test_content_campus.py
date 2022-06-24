@@ -1,16 +1,11 @@
 from kitconcept import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from portal_uft import validators
 from portal_uft.content.campus import ICampus
 from portal_uft.testing import PORTAL_UFT_INTEGRATION_TESTING
 from zope.component import createObject
 
 import unittest
-
-
-class MockCampus:
-    """Mock of a campus."""
 
 
 class CampusIntegrationTest(unittest.TestCase):
@@ -45,30 +40,31 @@ class CampusIntegrationTest(unittest.TestCase):
         obj = api.content.create(
             container=self.portal,
             type=self.portal_type,
-            title="Campus Palmas",
-            description="Campus de Palmas",
-            email="campus.palmas@uft.edu.br",
-            extension="1999",
+            title="Palmas",
+            description="Campus da UFT em Palmas",
+            city="palmas",
+            email="palmas@uft.edu.br",
+            extension="2022",
         )
         self.assertTrue(ICampus.providedBy(obj))
-        self.assertEqual(obj, self.portal["campus-palmas"])
-
-    def test_invariant_validate_email_invalid(self):
-        data = MockCampus()
-        data.title = "Campus Palmas"
-        data.email = "gurupi@uft.edu.br"
-        try:
-            ICampus.validateInvariants(data)
-        except validators.BadValue:
-            pass
-
-    def test_invariant_validate_email_valid(self):
-        data = MockCampus()
-        data.title = "Campus Palmas"
-        data.email = "campus.palmas@uft.edu.br"
-        ICampus.validateInvariants(data)
+        self.assertEqual(obj, self.portal["palmas"])
 
     def test_subscriber_added(self):
+        obj = api.content.create(
+            container=self.portal,
+            type=self.portal_type,
+            title="Palmas",
+            description="Campus da UFT em Palmas",
+            city="palmas",
+            email="palmas@uft.edu.br",
+            extension="2022",
+        )
+        self.assertIn("Campus: Palmas", obj.subject)
+
+    def test_subscriber_modified(self):
+        from zope.event import notify
+        from zope.lifecycleevent import ObjectModifiedEvent
+
         obj = api.content.create(
             container=self.portal,
             type=self.portal_type,
@@ -78,4 +74,6 @@ class CampusIntegrationTest(unittest.TestCase):
             city="palmas",
             extension="2022",
         )
-        self.assertIn("Campus: palmas", obj.subject)
+        obj.city = "araguaina"
+        notify(ObjectModifiedEvent(obj))
+        self.assertIn("Campus: Araguaína", obj.subject)
