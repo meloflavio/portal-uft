@@ -15,6 +15,13 @@ class ICampus(Schema):
         title=_("campus_description", default="Description"), required=False
     )
 
+    city = schema.TextLine(
+        title=_(
+            "City",
+        ),
+        required=True,
+    )
+
 
 @implementer(ICampus)
 class Campus(Container):
