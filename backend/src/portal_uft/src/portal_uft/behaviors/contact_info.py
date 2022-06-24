@@ -4,7 +4,8 @@ from plone.supermodel import model
 from portal_uft import _
 from portal_uft import validators
 from zope import schema
-from zope.interface import provider, invariant
+from zope.interface import invariant
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
@@ -31,10 +32,8 @@ class IContactInfo(model.Schema):
             )
 
     @invariant
-    def validate_email(data):
+    def validate_extension(data):
         """Validate email set by the user."""
         extension = data.extension
         if not (extension and validators.is_valid_extension(extension)):
-            raise validators.BadValue(
-                f"The extension {extension} is not valid."
-            )
+            raise validators.BadValue(f"The extension {extension} is not valid.")

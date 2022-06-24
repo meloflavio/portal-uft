@@ -34,4 +34,14 @@
         import_steps="typeinfo"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="portal_uft:default"
+      source="20220623001"
+      destination="20220624001"
+      >
+    <genericsetup:upgradeDepends
+        title="Add Person content type"
+        import_steps="typeinfo"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
