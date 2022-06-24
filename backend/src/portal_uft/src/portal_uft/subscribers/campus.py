@@ -4,10 +4,16 @@ from zope.lifecycleevent import ObjectAddedEvent
 from zope.lifecycleevent import ObjectModifiedEvent
 
 
+def _create_group(obj: Campus):
+    if api.group.get(obj.title):
+        return
+    api.group.create(obj.title, obj.title, obj.description)
+
+
 def _update_tags(obj: Campus):
     """Update tags on Campus object."""
     vocab = api.vocabulary.get("portal_uft.vocabulary.cities")
-    tags = {x for x in obj.subject if "Campus:" not in x}
+    tags = {x for x in obj.subject if not x.startswith("Campus:")}
     city = obj.city
     term = vocab.getTermByToken(city)
     tags.add(f"Campus: {term.title}")
@@ -22,3 +28,4 @@ def modified(obj: Campus, event: ObjectModifiedEvent):
 def added(obj: Campus, event: ObjectAddedEvent):
     """Post creation handler for Campus."""
     _update_tags(obj)
+    _create_group(obj)
