@@ -67,3 +67,15 @@ class CampusIntegrationTest(unittest.TestCase):
         data.title = "Campus Palmas"
         data.email = "campus.palmas@uft.edu.br"
         ICampus.validateInvariants(data)
+
+    def test_subscriber_added(self):
+        obj = api.content.create(
+            container=self.portal,
+            type=self.portal_type,
+            title="Palmas",
+            description="Campus da UFT em Palmas",
+            email="palmas@uft.edu.br",
+            city="palmas",
+            extension="2022",
+        )
+        self.assertIn("Campus: palmas", obj.subject)
