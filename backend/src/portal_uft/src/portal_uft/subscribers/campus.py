@@ -7,7 +7,7 @@ from zope.lifecycleevent import ObjectModifiedEvent
 def _update_tags(obj: Campus):
     """Update tags on Campus object."""
     vocab = api.vocabulary.get("portal_uft.vocabulary.cities")
-    tags = {x for x in obj.subject if "Campus:" not in x }
+    tags = {x for x in obj.subject if "Campus:" not in x}
     city = obj.city
     term = vocab.getTermByToken(city)
     tags.add(f"Campus: {term.title}")
