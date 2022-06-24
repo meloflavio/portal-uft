@@ -28,7 +28,7 @@ msgstr "Campus no site"
 
 #: portal_uft/content/campus.py:19
 msgid "City"
-msgstr "CIdade"
+msgstr "Cidade"
 
 #: portal_uft/behaviors/contact_info.py:15
 msgid "Contact"

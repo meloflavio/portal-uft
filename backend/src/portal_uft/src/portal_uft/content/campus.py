@@ -15,10 +15,11 @@ class ICampus(Schema):
         title=_("campus_description", default="Description"), required=False
     )
 
-    city = schema.TextLine(
+    city = schema.Choice(
         title=_(
             "City",
         ),
+        vocabulary="portal_uft.vocabulary.cities",
         required=True,
     )
 

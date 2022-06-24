@@ -16,16 +16,12 @@ class TestIndustriesVocabulary(unittest.TestCase):
 
     def test_vocabulary(self):
         vocab = api.vocabulary.get(VOCABULARY)
-
-        items = [item for item in vocab]
-
-        self.assertEqual(len(items), 3)
+        terms = [term for term in vocab]
+        self.assertEqual(len(terms), 4)
 
     def test_vocabulary_titles(self):
         vocab = api.vocabulary.get(VOCABULARY)
-
-        items = [item.title for item in vocab]
-
-        self.assertIn("Palmas", items)
-        self.assertIn("Araguaína", items)
-        self.assertIn("Gurupi", items)
+        titles = [term.title for term in vocab]
+        self.assertIn("Palmas", titles)
+        self.assertIn("Araguaína", titles)
+        self.assertIn("Gurupi", titles)
