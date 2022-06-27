@@ -77,3 +77,18 @@ class CampusIntegrationTest(unittest.TestCase):
         obj.city = "araguaina"
         notify(ObjectModifiedEvent(obj))
         self.assertIn("Campus: Araguaína", obj.subject)
+
+    def test_subscriber_create_add_group(self):
+        obj = api.content.create(
+            container=self.portal,
+            type=self.portal_type,
+            title="Palmas",
+            description="Campus da UFT em Palmas",
+            email="palmas@uft.edu.br",
+            city="palmas",
+            extension="2022",
+        )
+
+        groupName = f"group_{obj.title}"
+        group = api.group.get(groupName)
+        self.assertTrue(group)

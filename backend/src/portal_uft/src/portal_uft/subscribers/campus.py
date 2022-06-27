@@ -1,13 +1,16 @@
 from kitconcept import api
+from portal_uft import logger
 from portal_uft.content.campus import Campus
 from zope.lifecycleevent import ObjectAddedEvent
 from zope.lifecycleevent import ObjectModifiedEvent
 
 
 def _create_group(obj: Campus):
+    groupName = f"group_{obj.title}"
     if api.group.get(obj.title):
         return
-    api.group.create(obj.title, obj.title, obj.description)
+    api.group.create(groupName, obj.title, obj.description)
+    logger.info(f"Created group {obj.title}")
 
 
 def _update_tags(obj: Campus):
