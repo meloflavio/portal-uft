@@ -4,8 +4,24 @@
  */
 
 import React from 'react';
+import { Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import EmailWidget from '@plone/volto/components/theme/Widgets/EmailWidget';
 
+const PreviewImage = ({ content }) => {
+  const { image, image_caption } = content;
+  const scale_name = 'preview';
+  const scale = image.scales[scale_name];
+  const { download, heigth, width } = scale;
+  return (
+    <Image
+      src={download}
+      alt={image_caption}
+      height={heigth}
+      size={width}
+    ></Image>
+  );
+};
 /**
  * CampusView view component class.
  * @function CampusView
@@ -23,7 +39,7 @@ const CampusView = (props) => {
       <div className="ui card" style={{ width: '720px' }}>
         {content.image && (
           <div className="image">
-            <img src={content.image.download} alt="foto campus" />
+            <PreviewImage content={content} />
           </div>
         )}
         <div className="content">
@@ -38,7 +54,13 @@ const CampusView = (props) => {
           <div>{content.city && <div>Cidade: {content.city.title}</div>}</div>
         </div>
         <div className="extra content">
-          <div>{content.email && <div>Email: {content.email}</div>}</div>
+          <div>
+            {content.email && (
+              <div>
+                <EmailWidget value={content.email} />
+              </div>
+            )}
+          </div>
           <div>
             {content.extension && <div>Ramal: {content.extension}</div>}
           </div>
