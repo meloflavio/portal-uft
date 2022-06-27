@@ -86,6 +86,7 @@ format:  ## Format codebase
 lint:  ## Lint codebase
 	@echo "Lint codebase"
 	$(MAKE) -C "./backend/" lint
+	$(MAKE) -C "./frontend/" lint
 
 .PHONY: i18n
 i18n:  ## Update locales
