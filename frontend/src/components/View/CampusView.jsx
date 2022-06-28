@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Image } from 'semantic-ui-react';
+import { Grid, Card, Image, List, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import EmailWidget from '@plone/volto/components/theme/Widgets/EmailWidget';
 
@@ -32,41 +32,64 @@ const CampusView = (props) => {
   const { content } = props;
 
   return (
-    <div id="page-document" className="ui container viewwrapper campus-view">
-      <header>
-        <h1 className="documentFirstHeading">{content.title}</h1>
-      </header>
-      <div className="ui card" style={{ width: '720px' }}>
-        {content.image && (
-          <div className="image">
-            <PreviewImage content={content} />
-          </div>
-        )}
-        <div className="content">
-          {content.title && (
-            <div className="header">Campus: {content.city.title}</div>
-          )}
-          <div>
-            {content.description && (
-              <div className="description">{content.description}</div>
-            )}
-          </div>
-          <div>{content.city && <div>Cidade: {content.city.title}</div>}</div>
-        </div>
-        <div className="extra content">
-          <div>
-            {content.email && (
-              <div>
-                <EmailWidget value={content.email} />
-              </div>
-            )}
-          </div>
-          <div>
-            {content.extension && <div>Ramal: {content.extension}</div>}
-          </div>
-        </div>
-      </div>
-    </div>
+    <Segment>
+      <Grid columns={2} divided>
+        <Grid.Row>
+          <Grid.Column>
+            <Card fluid>
+              {content.image && (
+                <div className="image">
+                  <PreviewImage content={content} />
+                </div>
+              )}
+              <Card.Content>
+                {content.title && (
+                  <Card.Header>Campus: {content.city.title}</Card.Header>
+                )}
+                {content.description && (
+                  <Card.Description>{content.description}</Card.Description>
+                )}
+              </Card.Content>
+              <Card.Content extra>
+                <div>
+                  {content.email && (
+                    <div>
+                      <EmailWidget value={content.email} />
+                    </div>
+                  )}
+                </div>
+                <div>
+                  {content.extension && <div>Ramal: {content.extension}</div>}
+                </div>
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+          <Grid.Column>
+            <Card fluid>
+              <Card.Content>
+                <Card.Header>Equipe</Card.Header>
+                <Card.Description extra>
+                  {content.persons.map((person) => (
+                    <List divided relaxed>
+                      <List.Item>
+                        <List.Icon name="user" />
+
+                        <List.Content>
+                          <List.Header as="a">{person.title}</List.Header>
+                          <List.Description as="a">
+                            {person.description}
+                          </List.Description>
+                        </List.Content>
+                      </List.Item>
+                    </List>
+                  ))}
+                </Card.Description>
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Segment>
   );
 };
 
@@ -81,6 +104,7 @@ CampusView.propTypes = {
     description: PropTypes.string.isRequired,
     image: PropTypes.object,
     city: PropTypes.object,
+    persons: PropTypes.array,
     email: PropTypes.string.isRequired,
     extension: PropTypes.string.isRequired,
   }).isRequired,
