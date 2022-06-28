@@ -1,6 +1,6 @@
 /**
- * CampusView view component.
- * @module components/View/CampusView
+ * PersonView view component.
+ * @module components/View/PersonView
  */
 
 import React from 'react';
@@ -23,12 +23,12 @@ const PreviewImage = ({ content }) => {
   );
 };
 /**
- * CampusView view component class.
- * @function CampusView
+ * PersonView view component class.
+ * @function PersonView
  * @params {object} content Content object.
  * @returns {string} Markup of the component.
  */
-const CampusView = (props) => {
+const PersonView = (props) => {
   const { content } = props;
 
   return (
@@ -43,9 +43,6 @@ const CampusView = (props) => {
                 </div>
               )}
               <Card.Content>
-                {content.title && (
-                  <Card.Header>Campus: {content.city.title}</Card.Header>
-                )}
                 {content.description && (
                   <Card.Description>{content.description}</Card.Description>
                 )}
@@ -67,20 +64,17 @@ const CampusView = (props) => {
           <Grid.Column>
             <Card fluid>
               <Card.Content>
-                <Card.Header>Equipe</Card.Header>
+                <Card.Header>Campus</Card.Header>
                 <Card.Description extra>
-                  {content.persons.map((person) => (
+                  {content.campus.map((campus) => (
                     <List divided relaxed>
                       <List.Item>
-                        <List.Icon name="user" />
+                        <List.Icon name="institution" />
 
                         <List.Content>
                           <List.Header as="a">
-                            <a href={person['@id']}>{person.title}</a>
+                            <a href={campus['@id']}>{campus.title}</a>
                           </List.Header>
-                          <List.Description as="a">
-                            {person.description}
-                          </List.Description>
                         </List.Content>
                       </List.Item>
                     </List>
@@ -100,16 +94,15 @@ const CampusView = (props) => {
  * @property {Object} propTypes Property types.
  * @static
  */
-CampusView.propTypes = {
+PersonView.propTypes = {
   content: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.object,
-    city: PropTypes.object,
-    persons: PropTypes.array,
+    campus: PropTypes.array,
     email: PropTypes.string.isRequired,
     extension: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-export default CampusView;
+export default PersonView;

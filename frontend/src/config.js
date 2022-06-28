@@ -16,6 +16,7 @@
 // All your imports required for the config here BEFORE this line
 import '@plone/volto/config';
 import CampusView from './components/View/CampusView';
+import PersonView from './components/View/PersonView';
 
 export default function applyConfig(config) {
   config.settings = {
@@ -27,6 +28,7 @@ export default function applyConfig(config) {
   config.views.contentTypesViews = {
     ...config.views.contentTypesViews,
     campus: CampusView,
+    person: PersonView,
   };
   return config;
 }
