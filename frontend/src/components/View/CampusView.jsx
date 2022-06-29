@@ -4,9 +4,10 @@
  */
 
 import React from 'react';
-import { Grid, Card, Image, List, Segment } from 'semantic-ui-react';
+import { Grid, Card, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import EmailWidget from '@plone/volto/components/theme/Widgets/EmailWidget';
+import ListCard from '../ListCard/ListCard';
 
 const PreviewImage = ({ content }) => {
   const { image, image_caption } = content;
@@ -65,29 +66,7 @@ const CampusView = (props) => {
             </Card>
           </Grid.Column>
           <Grid.Column>
-            <Card fluid>
-              <Card.Content>
-                <Card.Header>Equipe</Card.Header>
-                <Card.Description extra>
-                  {content.persons.map((person) => (
-                    <List divided relaxed>
-                      <List.Item>
-                        <List.Icon name="user" />
-
-                        <List.Content>
-                          <List.Header as="a">
-                            <a href={person['@id']}>{person.title}</a>
-                          </List.Header>
-                          <List.Description as="a">
-                            {person.description}
-                          </List.Description>
-                        </List.Content>
-                      </List.Item>
-                    </List>
-                  ))}
-                </Card.Description>
-              </Card.Content>
-            </Card>
+            <ListCard list={content.persons} nameList={'Equipe'} icon="user" />
           </Grid.Column>
         </Grid.Row>
       </Grid>
