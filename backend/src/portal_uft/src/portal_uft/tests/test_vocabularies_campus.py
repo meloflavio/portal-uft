@@ -8,34 +8,37 @@ import unittest
 
 VOCABULARY = "portal_uft.vocabulary.campus"
 
+
 class TestCampusVocabulary(unittest.TestCase):
 
     layer = PORTAL_UFT_INTEGRATION_TESTING
-    portal_type = "campus"
 
-    def setUp(self):
+    def setUp(self) -> None:
         self.portal = self.layer["portal"]
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
-        fti = api.fti.get(self.portal_type)
-        fti.global_allow = True
-        api.content.create(
-            container=self.portal,
-            type=self.portal_type,
-            title="Palmas",
-            description="Campus da UFT em Palmas",
-            city="palmas",
-            email="palmas@uft.edu.br",
-            extension="2022",
-        )
-        api.content.create(
-            container=self.portal,
-            type=self.portal_type,
-            title="Araguaina",
-            description="Campus da UFT em Araguaina",
-            city="araguaina",
-            email="araguaina@uft.edu.br",
-            extension="2023",
-        )
+        # Create test content
+        self.create_content()
+
+    def create_content(self):
+        contents = [
+            # id, title, city, extension
+            ("palmas", "Palmas", "palmas", "1234"),
+            ("araguaina", "Araguaína", "araguaina", "1235"),
+        ]
+
+        for id_, title, city, extension in contents:
+            api.content.create(
+                container=self.portal,
+                **{
+                    "type": "campus",
+                    "id": id_,
+                    "title": title,
+                    "description": f"Campus da UFT em {title}",
+                    "city": city,
+                    "email": f"{city}@uft.edu.br",
+                    "extension": extension,
+                },
+            )
 
     def test_vocabulary(self):
         vocab = api.vocabulary.get(VOCABULARY)
@@ -46,4 +49,4 @@ class TestCampusVocabulary(unittest.TestCase):
         vocab = api.vocabulary.get(VOCABULARY)
         titles = [term.title for term in vocab]
         self.assertIn("Palmas", titles)
-        self.assertIn("Araguaina", titles)
+        self.assertIn("Araguaína", titles)

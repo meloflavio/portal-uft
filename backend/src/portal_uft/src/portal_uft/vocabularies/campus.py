@@ -4,6 +4,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+
 @provider(IVocabularyFactory)
 def campus_vocabulary(context):
     """Vocabulary of Campus in the site."""
