@@ -1,4 +1,5 @@
 from kitconcept import api
+from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from portal_uft import validators
@@ -67,3 +68,21 @@ class PersonIntegrationTest(unittest.TestCase):
         data.title = "Alex Limi"
         data.email = "alex.limi@uft.edu.br"
         IPerson.validateInvariants(data)
+
+    def test_workflow_anonymous_view_peding(self):
+        obj = api.content.create(
+            container=self.portal,
+            type=self.portal_type,
+            title="Alex Limi",
+            description="Plone Founder",
+            email="limi@uft.edu.br",
+            extension="1999",
+        )
+
+        api.content.transition(obj, transition="submit")
+        # Testar se Manager tem a permissão View
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+        self.assertTrue(api.user.has_permission("View", obj=obj))
+        # Testar se Anonymous tem a permissão View
+        setRoles(self.portal, TEST_USER_ID, ["Anonymous"])
+        self.assertTrue(api.user.has_permission("View", obj=obj))
