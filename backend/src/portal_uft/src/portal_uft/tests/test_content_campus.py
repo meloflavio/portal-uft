@@ -104,6 +104,7 @@ class CampusIntegrationTest(unittest.TestCase):
             extension="2022",
         )
         api.content.transition(campus, "publish")
+        campus_uuid = api.content.get_uuid(campus)
         person = api.content.create(
             container=self.portal,
             type="person",
@@ -111,8 +112,8 @@ class CampusIntegrationTest(unittest.TestCase):
             description="Plone Founder",
             email="limi@uft.edu.br",
             extension="1999",
+            campus={campus_uuid},
         )
-        api.relation.create(source=person, target=campus, relationship="campus")
         self.assertEqual(
             campus.persons(),
             [
