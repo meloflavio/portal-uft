@@ -14,6 +14,7 @@ import { Card, List } from 'semantic-ui-react';
  * @returns {string} Markup of the component.
  */
 const ListCard = ({ nameList, list, icon }) => {
+  if (!list) return <div></div>;
   return (
     <Card fluid>
       <Card.Content>
