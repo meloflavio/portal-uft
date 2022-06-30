@@ -35,6 +35,13 @@ export default function applyConfig(config) {
     ...config.blocks.blocksConfig,
     ...blocks,
   };
+  config.blocks.groupBlocksOrder = [
+    { id: 'mostUsed', title: 'Most used' },
+    { id: 'uft', title: 'UFT' },
+    { id: 'text', title: 'Text' },
+    { id: 'media', title: 'Media' },
+    { id: 'common', title: 'Common' },
+  ];
   config.blocks.blocksConfig.__grid.gridAllowedBlocks = [
     ...config.blocks.blocksConfig.__grid.gridAllowedBlocks,
     'personBlock',
