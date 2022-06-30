@@ -17,6 +17,7 @@
 import '@plone/volto/config';
 import CampusView from './components/View/CampusView';
 import PersonView from './components/View/PersonView';
+import blocks from '@package/components/Blocks';
 
 export default function applyConfig(config) {
   config.settings = {
@@ -30,5 +31,14 @@ export default function applyConfig(config) {
     campus: CampusView,
     person: PersonView,
   };
+  config.blocks.blocksConfig = {
+    ...config.blocks.blocksConfig,
+    ...blocks,
+  };
+  config.blocks.blocksConfig.__grid.gridAllowedBlocks = [
+    ...config.blocks.blocksConfig.__grid.gridAllowedBlocks,
+    'personBlock',
+    'campusBlock',
+  ];
   return config;
 }
