@@ -16,11 +16,6 @@ msgstr ""
 "Language-Name: eu\n"
 "Preferred-Encodings: utf-8 latin1\n"
 
-#: components/Blocks/Twitter/schema
-# defaultMessage: Alignment
-msgid "Alignment"
-msgstr ""
-
 #: components/Blocks/CampusBlock/schema
 # defaultMessage: Campus
 msgid "Campus"
@@ -29,11 +24,6 @@ msgstr ""
 #: components/Blocks/CampusBlock/schema
 # defaultMessage: Campus Block
 msgid "Campus Block"
-msgstr ""
-
-#: components/Blocks/Twitter/schema
-# defaultMessage: Image size
-msgid "Image size"
 msgstr ""
 
 #: components/Blocks/PersonBlock/schema
