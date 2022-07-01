@@ -46,6 +46,7 @@ export default function applyConfig(config) {
     ...config.blocks.blocksConfig.__grid.gridAllowedBlocks,
     'personBlock',
     'campusBlock',
+    'twitterBlock',
   ];
   return config;
 }

@@ -26,6 +26,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
 
+#: components/Blocks/Twitter/schema
+# defaultMessage: Alignment
+msgid "Alignment"
+msgstr ""
+
 #: components/Blocks/CampusBlock/schema
 # defaultMessage: Campus
 msgid "Campus"
@@ -36,6 +41,11 @@ msgstr ""
 msgid "Campus Block"
 msgstr ""
 
+#: components/Blocks/Twitter/schema
+# defaultMessage: Image size
+msgid "Image size"
+msgstr ""
+
 #: components/Blocks/PersonBlock/schema
 # defaultMessage: Person
 msgid "Person"
@@ -44,4 +54,14 @@ msgstr ""
 #: components/Blocks/PersonBlock/schema
 # defaultMessage: Person Block
 msgid "Person Block"
+msgstr ""
+
+#: components/Blocks/Twitter/schema
+# defaultMessage: Twitter
+msgid "Twitter"
+msgstr ""
+
+#: components/Blocks/Twitter/schema
+# defaultMessage: URL
+msgid "URL"
 msgstr ""
