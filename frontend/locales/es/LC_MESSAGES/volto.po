@@ -21,6 +21,11 @@ msgstr ""
 "Domain: volto\n"
 "X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
 
+#: components/Blocks/Twitter/schema
+# defaultMessage: Alignment
+msgid "Alignment"
+msgstr ""
+
 #: components/Blocks/CampusBlock/schema
 # defaultMessage: Campus
 msgid "Campus"
@@ -29,6 +34,11 @@ msgstr ""
 #: components/Blocks/CampusBlock/schema
 # defaultMessage: Campus Block
 msgid "Campus Block"
+msgstr ""
+
+#: components/Blocks/Twitter/schema
+# defaultMessage: Image size
+msgid "Image size"
 msgstr ""
 
 #: components/Blocks/PersonBlock/schema

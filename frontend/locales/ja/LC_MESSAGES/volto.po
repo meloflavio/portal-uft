@@ -18,6 +18,11 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "X-Is-Fallback-For: ja-jp\n"
 
+#: components/Blocks/Twitter/schema
+# defaultMessage: Alignment
+msgid "Alignment"
+msgstr ""
+
 #: components/Blocks/CampusBlock/schema
 # defaultMessage: Campus
 msgid "Campus"
@@ -26,6 +31,11 @@ msgstr ""
 #: components/Blocks/CampusBlock/schema
 # defaultMessage: Campus Block
 msgid "Campus Block"
+msgstr ""
+
+#: components/Blocks/Twitter/schema
+# defaultMessage: Image size
+msgid "Image size"
 msgstr ""
 
 #: components/Blocks/PersonBlock/schema
